@@ -2,16 +2,29 @@
 <!DOCTYPE html>
 <html>
     <head>
-
+        <link rel="stylesheet" href="styles.css">
+        <title>Ball Game</title>
     </head>
     <body>
+        <div id="startScreen">
+        <center>
+            <h1>Instructions!</h1>
+            <p>When you hit the start button, a random number of balls will appear with an assigned value.</p>
+            <p>White = 1, Yellow = 2, Orange = 3, Red = 4, and Green = 5.</p>
+            <p>Your task is to add up all of the values and enter your answer before the balls hit the edge.</p>
+            <p>If you fail, the game will end and you must refresh the oage to restart. If you succeed, your points will go up.</p>
+            <button id = "start">Start</button>
+        </center>
+        </div>
+        <button id="answer" class="remove">Answer!</button>
+        <p id = "showScore" class = "remove">Your score will show up here!</p>
 
         <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
-
         <script src = "game.js"></script>
     </body>
 </html>
 
 
 
-<!-- A ball would appear at a random point on the screen and move across it at a random speed. The ball disappears whenever the mouse hits it and there will be upgrades to more easily block the balls. If the user can't disappear the ball before it hits an edge of the screen they get a point. Ten points and they lose -->
+<!-- START BUTTON TOO. WHEN CLICKED DO THE SET UP FUNCTION. ADD REMOVE CLASS TO THAT BUTTON AND THE EXPLANATAION PARAGRAPH. 
+REMOVE REMOVE CLASS FROM ANSWER BUTTON -->

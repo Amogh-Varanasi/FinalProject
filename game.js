@@ -4,110 +4,153 @@ let dots = [
     {
         x: 100,
         y: 200,
-        speedX: Math.random(5),
-        speedY: Math.random(5),
+        speedX: Math.random(3),
+        speedY: Math.random(3),
         score: getRandomInt(4) + 1
     },
     {
         x: 200,
         y: 300,
-        speedX: Math.random(5),
-        speedY: Math.random(5),
+        speedX: Math.random(3),
+        speedY: Math.random(3),
         score: getRandomInt(4) + 1
     }
 ]
+let startEl = document.getElementById(`start`)
+let answerEl = document.getElementById(`answer`)
+let screenEl = document.getElementById(`startScreen`)
+let showScoreEl = document.getElementById(`showScore`)
 
-console.log(dots[1])
-
+let userScore = 0
 
 function getRandomInt (max) {
     return Math.floor(Math.random() * Math.floor (max));
 }
 
 
+let gameStart = 0
+
+function startGame () {
+    gameStart ++
+    screenEl.classList.add(`remove`)
+    answerEl.classList.remove(`remove`)
+    showScoreEl.classList.remove(`remove`)
+}
 
 function setup () {
-    createCanvas(800, 500)
+    // if (gameStart > 0) {
+        createCanvas(800, 500)
+    // } 
+    
 }
+
+let trigger = 0
 
 function draw () {
-    background (0)
-    // setInterval(drawDots, 1000)
-    drawDots()
+    if (gameStart > 0) {
+        background (`black`)
+        drawDots()
+        trigger ++
+    }
 }
-let positionCounter = 0
+
 function position () {
-    dots.push({x: getRandomInt(400)+200, y: getRandomInt(200)+200, 
-    speedX: getRandomInt(4), speedY: getRandomInt(4),
+    dots.push({x: getRandomInt(200)+300, y: getRandomInt(100)+200, 
+    speedX: getRandomInt(4), speedY: getRandomInt(2),
     score: getRandomInt(4) + 1})
-    positionCounter ++
 }
-
-position()
-
+let pos = 0
+let plzWork = 0
 function drawDots () {
-    for (let i = 0; i < 3; i++) {  // change 5 to x.length later        
-        fill(`white`)
-
-        if (currentPointIsCloseToFirst()) {
-            fill(`red`)
-            dots.shift(); //find different way to delete first item in list
-        }
-
+    for (let i = 0; i < 5; i++) {  // change 5 to random int var later
+        position()
+        // fill(`white`)
         if (dots[i].score === 1) {
-            fill(`green`)
+            fill(`white`)
         }
         if (dots[i].score === 2) {
             fill(`yellow`)
         }
         if (dots[i].score === 3) {
-            fill(`pink`)
+            fill(`orange`)
         }
         if (dots[i].score === 4) {
-            fill(`purple`)
+            fill(`red`)
         }
         if (dots[i].score === 5) {
-            fill(`brown`)
+            fill(`green`)
         }
 
-        console.log(dots[i].score)
-
         circle(dots[i].x, dots[i].y, size)
-        dots[i].x = dots[i].x + dots[i].speedX
-        dots[i].y = dots[i].y + dots[i].speedY
 
-        // console.log(dots.length)
+        if (plzWork === 0) {
+            dots[i].x = dots[i].x + dots[i].speedX
+            dots[i].y = dots[i].y + dots[i].speedY
+        }
+
+
+        if (dots[i].x > 790) {
+            clearDots()
+            // I did the clear dots so that it would break the function and stop it from going so the user would know they lost
+        }
+
+        if (dots[i].x < 10) {
+            clearDots()
+        }
+
+        if (dots[i].y > 490) {
+            clearDots()
+        }
+
+        if (dots[i].y < 10) {
+            clearDots()
+        }
+        
+
+        if (trigger === 0) {
+            pos = pos + dots[i].score
+            console.log(i)
+        }
+        
+}
+}
+
+
+
+// Filter each and if have something create a new list. If list.length > 0 clear dots
+
+// function addScore () {
+//     for (let i = 0; i < dots.length; i++) {
+//         pos = 100
+//     }
+// }
+
+function clearDots() {
+    dots = []
+    plzWork = 0
+}
+
+// let answerTimes = 0
+
+function giveAnswer () {
+    plzWork = 1
+    let response = prompt(`Enter your answer #`)
+    console.log(`response is ${response}`)
+    response = parseInt(response, 10)
+    console.log(`pos is ${pos}`)
+    if (response === pos) {
+            alert(`Good job!`)
+            setTimeout (clearDots, 1000) 
+            userScore += pos
+            pos = 0
+            trigger = 0
+            console.log(pos)
+    } else {
+        alert(`Wrong! Game over! Refresh the page to try again.`)
     }
 }
 
-function keyPressed () {
-    // if (keyCode === 49) {
-    //     for (let i = 0; i < dots.length; i ++) {
-    //         if (dots[i].score = 1) {
-    //             // delete item in list
-    //         }
-    //     }
-    // }
+startEl,addEventListener(`click`, startGame)
+answerEl.addEventListener(`click`, giveAnswer)
 
-    let dots = dots.filter(dot => {
-        return !dot.score === 1
-    })
-}
-
-function distance(pt1, pt2) {
-    
-    let deltaX = pt2.x - pt1.x
-    let deltaY = pt2.y - pt1.y
-    return Math.sqrt(deltaX * deltaX + deltaY * deltaY)
-}
-
-function currentPointIsCloseToFirst() {
-    return distance({x: mouseX, y: mouseY}, dots[0]) < size
-}
-
-
-// separate function to draw circle. have for loop call it with setinterval
-
-// make list with points. For loop moving through it to make points. Look at polygon js
-
-// if mouseX, mouseY = ballX, ballY
+console.log(`pos is ${pos}`)
