@@ -122,6 +122,8 @@ function drawDots () {
         
 
         if (trigger === 0) {
+            // I put this under trigger because this function is constantly started the draw function, so the for loop runs for 5 values and then repeats indefinitely. 
+            // The trigger if statement lets me make it so that it only runs once per set of balls.
             pos = pos + dots[i].score
             console.log(dots[i].score)
         }
@@ -134,7 +136,6 @@ function clearDots() {
     trigger = 0
     plzWork = 0
     pos = 0
-    // doDraw = 0
 }
 
 
