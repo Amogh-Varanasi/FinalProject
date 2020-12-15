@@ -69,6 +69,12 @@ let ballCount = getRandomInt(4) + 1
 let pos = 0
 let plzWork = 0
 
+function keyPressed() {
+    if (keyCode === 13) {
+        giveAnswer()
+    }
+}
+
 
 function drawDots () {
     for (let i = 0; i < ballCount; i++) {
@@ -92,8 +98,8 @@ function drawDots () {
         circle(dots[i].x, dots[i].y, size)
 
         if (plzWork === 0) {
-            dots[i].x = dots[i].x + dots[i].speedX
-            dots[i].y = dots[i].y + dots[i].speedY
+            dots[i].x = dots[i].x + (dots[i].speedX)/2
+            dots[i].y = dots[i].y + (dots[i].speedY)/2
         }
 
 
