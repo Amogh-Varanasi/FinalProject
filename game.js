@@ -61,7 +61,7 @@ function draw () {
 function position () {
     dots.push({x: getRandomInt(200)+300, y: getRandomInt(100)+200, 
     speedX: getRandomInt(2) + 1, speedY: getRandomInt(2) + 1,
-    score: getRandomInt(4) + 1})
+    score: getRandomInt(4) + 2})
 }
 
 let ballCount = getRandomInt(4) + 1
@@ -92,12 +92,13 @@ function drawDots () {
             fill(`red`)
         }
         if (dots[i].score === 5) {
-            fill(`hotpink`)
+            fill(`green`)
         }
 
         circle(dots[i].x, dots[i].y, size)
 
         if (plzWork === 0) {
+            // This is so that the balls stay still for a moment after the user submits their answer to ensure they're ready for the next round.
             dots[i].x = dots[i].x + (dots[i].speedX)/2
             dots[i].y = dots[i].y + (dots[i].speedY)/2
         }
