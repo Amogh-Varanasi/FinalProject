@@ -6,18 +6,21 @@
         <title>Ball Game</title>
     </head>
     <body>
+        <h1 class="midish" id="title">Ball Game</h1>
         <div id="startScreen">
         <center>
-            <h1>Instructions!</h1>
+            <h2>Instructions!</h2>
             <p>When you hit the start button, a random number of balls will appear with an assigned value.</p>
             <p>White = 1, Yellow = 2, Orange = 3, Red = 4, and Green = 5.</p>
             <p>Your task is to add up all of the values and enter your answer before the balls hit the edge.</p>
-            <p>If you fail, the game will end and you must refresh the oage to restart. If you succeed, your points will go up.</p>
+            <p>If you fail, the game will end and you must refresh the page to restart. If you succeed, your points will go up.</p>
             <button id = "start">Start</button>
         </center>
         </div>
-        <button id="answer" class="remove">Answer!</button>
         <p id = "showScore" class = "remove">Your score will show up here!</p>
+
+        <input type="number" name="skore" id="skore" class="remove">
+        <button id="answer" class="remove">Answer!</button>
 
         <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
         <script src = "game.js"></script>

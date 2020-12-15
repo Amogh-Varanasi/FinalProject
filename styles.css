@@ -1,3 +1,11 @@
 .remove{
     display: none;
 }
+
+.midish{
+    text-align: center;
+}
+
+.left{
+    text-align: left;
+}
